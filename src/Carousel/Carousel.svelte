@@ -79,9 +79,7 @@
   });
 
   onDestroy(() => {
-    if (_rideTimeoutId) {
-      clearTimeout(_rideTimeoutId);
-    }
+    clearRideTimeout(_rideTimeoutId);
 
     if (_removeVisibilityChangeListener) {
       _removeVisibilityChangeListener();
@@ -110,13 +108,13 @@
     clearRideTimeout();
 
     if (ride) {
-      _rideTimeoutId = setTimeout(autoNext, interval);
+      _rideTimeoutId = setInterval(autoNext, interval);
     }
   }
 
   function clearRideTimeout() {
     if (_rideTimeoutId) {
-      clearTimeout(_rideTimeoutId);
+      clearInterval(_rideTimeoutId);
     }
   }
 
